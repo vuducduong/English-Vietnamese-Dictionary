@@ -1,0 +1,99 @@
+<button mat-raised-button color="primary" (click)="openDialogCreate()">Add New Dictionary</button>
+<br>
+<br>
+<!--<div class="table-responsive">-->
+<!--  <table class="table table-bordered" width="100%" cellspacing="0">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th>#</th>-->
+<!--      <th>Name</th>-->
+<!--      <th>Type</th>-->
+<!--      <th>Spelling</th>-->
+<!--      <th>Description</th>-->
+<!--      <th>Actions</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr *ngFor="let english of (englishs | async) ; let i = index">-->
+<!--      <td>{{ i + 1 }}</td>-->
+<!--      <td>{{english.name}}</td>-->
+<!--      <td>{{english.type}}</td>-->
+<!--      <td>{{english.spelling}}</td>-->
+<!--      <td>{{english.description}}</td>-->
+<!--      <td>-->
+<!--        <button (click)="openDialog(english.id, english.name, english.type)" mat-flat-button color="warn">Delete</button>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
+<!--</div>-->
+<!-- Checkbox Column -->
+
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> No.</th>
+    <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Type</th>
+    <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="spelling">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Spelling</th>
+    <td mat-cell *matCellDef="let element"> {{element.spelling}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Description</th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef>
+      Action
+    </th>
+    <td mat-cell *matCellDef="let element;">
+      <a [routerLink]="['/admin/english/update', element.id]" mat-flat-button color="accent">Edit</a> &nbsp;
+      <button (click)="openDialog(element.id, element.name, element.type)" mat-flat-button color="warn">Delete</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      (click)="selection.toggle(row)">
+  </tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>

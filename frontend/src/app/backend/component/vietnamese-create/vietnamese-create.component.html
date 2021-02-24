@@ -1,0 +1,65 @@
+<div align="center" class="container">
+  <h1>Thêm Từ Mới</h1>
+
+  <mat-error style="width: 100%;" *ngIf="error_msg !== ''">
+    <h2>{{error_msg}} . <a mat-raised-button routerLink="/admin/login" class="nav-link">Login</a></h2>
+  </mat-error>
+
+  <div [hidden]="submitted && !error_msg">
+    <form class="example-form" [formGroup]="vietnameseForm">
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput formControlName="name" placeholder="Hello">
+        <mat-error
+          *ngIf="vietnameseForm.get('name')!.invalid && vietnameseForm.get('name')!.touched  || (vietnameseForm.get('name').untouched && vietnameseFormAttempt)">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type" multiple>
+          <mat-option *ngFor="let type of typeList" [value]="type">{{ type }}</mat-option>
+          Type is <strong>required</strong>
+        </mat-select>
+        <mat-error
+          *ngIf="vietnameseForm.get('type')!.invalid && vietnameseForm.get('type')!.touched  || (vietnameseForm.get('type').untouched && vietnameseFormAttempt)">
+          Type is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Spelling</mat-label>
+        <input type="text" matInput formControlName="spelling" placeholder="example">
+        <mat-error *ngIf="vietnameseForm.get('spelling')!.invalid && vietnameseForm.get('spelling')!.touched  || (vietnameseForm.get('spelling').untouched && vietnameseFormAttempt)">
+          Spelling is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+<!--      <mat-form-field appearance="fill" class="example-full-width">-->
+<!--        <mat-label>Description</mat-label>-->
+<!--        <input type="text" matInput formControlName="description" placeholder="example">-->
+<!--        <mat-error *ngIf="vietnameseForm.get('description')!.invalid && vietnameseForm.get('description')!.touched  || (vietnameseForm.get('description').untouched && vietnameseFormAttempt)">-->
+<!--          Description is <strong>required</strong>-->
+<!--        </mat-error>-->
+<!--      </mat-form-field>-->
+      <p style="text-align: left !important;">Description</p>
+      <tinymce matInput formControlName="description" [config]="config"></tinymce>
+      <mat-error
+        *ngIf="vietnameseForm.get('description')!.invalid && vietnameseForm.get('description')!.touched  || (vietnameseForm.get('description').untouched && vietnameseFormAttempt)">
+        Description is <strong>required</strong>
+      </mat-error>
+
+
+      <div align="center">
+        <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="!vietnameseForm.valid">Add</button> &nbsp;
+        <button mat-raised-button color="warn" (click)="reset()">Reset</button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="showLoadingBar === true">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+
+</div>

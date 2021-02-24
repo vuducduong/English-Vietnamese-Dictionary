@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "dataimagemusic": {
+      "hosting": {
+        "frontend": [
+          "dataimagemusic"
+        ]
+      }
+    }
+  }
+}

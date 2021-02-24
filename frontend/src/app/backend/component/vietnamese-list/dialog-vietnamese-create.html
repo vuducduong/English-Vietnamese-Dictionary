@@ -1,0 +1,62 @@
+<h2 mat-dialog-title>Add Vietnamese new word</h2>
+<form class="example-form" [formGroup]="vietnameseForm">
+  <mat-dialog-content class="mat-typography">
+    <div [hidden]="submitted">
+      <mat-form-field class="example-full-width">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput formControlName="name" placeholder="Hello">
+        <mat-error *ngIf="vietnameseForm.get('name')!.invalid && vietnameseForm.get('name')!.touched  || (vietnameseForm.get('name').untouched && vietnameseFormAttempt)">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <br>
+      <br>
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type" multiple>
+          <mat-option *ngFor="let type of typeList" [value]="type">{{ type }}</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="vietnameseForm.get('type')!.invalid && vietnameseForm.get('type')!.touched  || (vietnameseForm.get('type').untouched && vietnameseFormAttempt)">
+          Type is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Spelling</mat-label>
+        <input type="text" matInput formControlName="spelling" placeholder="example">
+        <mat-error *ngIf="vietnameseForm.get('spelling')!.invalid && vietnameseForm.get('spelling')!.touched  || (vietnameseForm.get('spelling').untouched && vietnameseFormAttempt)">
+          Spelling is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Description</mat-label>
+        <input type="text" matInput formControlName="description" placeholder="example">
+        <mat-error *ngIf="vietnameseForm.get('description')!.invalid && vietnameseForm.get('description')!.touched  || (vietnameseForm.get('description').untouched && vietnameseFormAttempt)">
+          Description is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <br>
+    </div>
+
+    <div *ngIf="showLoadingBar === true">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+
+    <div [hidden]="!submitted">
+      <!--    <div class="error-msg" *ngIf="error_msg != ''">{{error_msg}}.-->
+      <!--      <a routerLink="/login" class="nav-link">Login</a>-->
+      <!--    </div>-->
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button> &nbsp;
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" type="submit" (click)="onSubmit()" [disabled]="!vietnameseForm.valid">Add</button> &nbsp;
+    <button mat-raised-button color="warn" (click)="reset()">Reset</button>
+  </mat-dialog-actions>
+</form>

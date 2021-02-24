@@ -1,0 +1,38 @@
+<!--<div *ngIf="percentage | async as pct">-->
+<!--  <progress [value]="pct" max="100"></progress>-->
+<!--  {{ pct | number }}%-->
+<!--</div>-->
+<br><br>
+<div *ngIf="percentage | async as pct">
+  <!--  <mat-progress-bar mode="determinate" [value]="pct"></mat-progress-bar>-->
+  <div class="col-2">
+    <div class="progress">
+      <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+           [ngStyle]="{ width: pct + '%' }" aria-valuenow="{{ pct | number }}" aria-valuemin="0"
+           aria-valuemax="100"> {{ pct | number }}%
+      </div>
+    </div>
+    {{ pct | number }}%
+  </div>
+</div>
+
+
+<div *ngIf="snapshot | async as snap">
+
+  {{ FSP.transform(snap.bytesTransferred) }} of {{ FSP.transform(snap.totalBytes) }}
+
+  <br>
+
+  <!--  <div *ngIf="downloadURL as url">-->
+  <div *ngIf="fb as url">
+    <h3>Results!</h3>
+    <!--    <img [src]="url"><br>-->
+    <a [href]="url" target="_blank" rel="noopener">Download Me!</a>
+  </div>
+  <br>
+  <br>
+  <button (click)="task.pause()" mat-raised-button color="primary" [disabled]="!isActive(snap)">Pause</button> &nbsp;
+  <button (click)="task.resume()" mat-raised-button color="warn" [disabled]="!(snap?.state === 'paused')">Resume</button> &nbsp;
+  <button (click)="task.cancel()" mat-raised-button color="accent" [disabled]="!isActive(snap)">Cancel</button> &nbsp;
+  <button (click)="reset()" mat-raised-button color="warn">Reset</button> &nbsp;
+</div>

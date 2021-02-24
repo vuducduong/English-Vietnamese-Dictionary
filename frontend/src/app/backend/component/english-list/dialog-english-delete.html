@@ -1,0 +1,18 @@
+<!--<h1 mat-dialog-title>Dialog with elements</h1>-->
+<!--<div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div>-->
+<!--<div mat-dialog-actions>-->
+<!--  <button mat-button mat-dialog-close>Close</button>-->
+<!--</div>-->
+
+<h1 mat-dialog-title>Hi guys</h1>
+<div mat-dialog-content>
+  <p>Do you want to delete {{ data.name }}?</p>
+<!--  <mat-form-field>-->
+<!--    <mat-label>Favorite Animal</mat-label>-->
+<!--    <input matInput [(ngModel)]="data.id">-->
+<!--  </mat-form-field>-->
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="onNoClick()">No Thanks</button>
+  <button mat-raised-button color="warn" [mat-dialog-close]="data.id" cdkFocusInitial>Ok</button>
+</div>

@@ -1,0 +1,27 @@
+<h3>Update vietnamese</h3>
+<div style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" required [(ngModel)]="vietnamese.name" name="first_name">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Type</label>
+      <input type="text" class="form-control" id="type" required [(ngModel)]="vietnamese.type" name="last_name">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Spelling</label>
+      <input type="text" class="form-control" id="spelling" required [(ngModel)]="vietnamese.spelling" name="id">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Description</label>
+      <input type="text" class="form-control" id="description" required [(ngModel)]="vietnamese.description" name="id">
+    </div>
+
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

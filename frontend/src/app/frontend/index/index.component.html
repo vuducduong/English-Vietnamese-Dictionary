@@ -1,0 +1,110 @@
+<div class="pos-f-t">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <h4 class="text-white">Doling Dương</h4>
+      <span class="text-muted"><a href="">Home</a></span><br>
+      <span class="text-muted"><a href="/admin/login">Admin</a></span>
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+            aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <p style="font-size: 30px">TỪ ĐIỂN ANH VIỆT</p>
+  </nav>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-6 mt-5 col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <div class="col-6 col-md-6">
+            <!--            <textarea rows="1" matInput [value]="vi" (change)="getValueEnglish($event)" placeholder="English ..."></textarea>-->
+            <input type="text" (input)="search$.next($event.target.value)" placeholder="English ...">
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+
+    </div>
+    <div class="col-6 mt-5 col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <div class="col-6 col-md-6">
+            <!--            <textarea rows="1" matInput [value]="en" (change)="getValueVietnamese($event)" placeholder="Vietnamese ...">-->
+            <!--            </textarea>-->
+            <input type="text" [(ngModel)]="vi" placeholder="Vietnamese ...">
+            <div *ngIf="enableEn">
+              <h1>
+                <div *ngFor="let vn of vnlist; let i = index">
+                  <div *ngIf="vn.name">
+                    {{ vn.name }}
+                  </div>
+                </div>
+              </h1>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col-6 mt-5 col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <div class="col-6 col-md-6">
+            <!--            <textarea rows="1" matInput [value]="vi" (change)="getValueEnglish($event)" placeholder="English ..."></textarea>-->
+            <input type="text" (input)= "onInput($event)" placeholder="Vietnamese ...">
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+
+    </div>
+    <div class="col-6 mt-5 col-md-6">
+      <mat-card>
+        <mat-card-content>
+          <div class="col-6 col-md-6">
+            <!--            <textarea rows="1" matInput [value]="en" (change)="getValueVietnamese($event)" placeholder="Vietnamese ...">-->
+            <!--            </textarea>-->
+            <input type="text" [(ngModel)]="en" placeholder="English ...">
+            <div *ngIf="enableEn">
+              <h1>
+                <div *ngFor="let value of english; let i = index">
+                  <div *ngIf="value.name">
+                    {{ value.name }}
+                  </div>
+                </div>
+              </h1>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+
+
+    <!--    <div class="container">-->
+<!--      <div class="row">-->
+<!--        <div class="col-6 mt-5 col-md-6">-->
+<!--          <mat-card>-->
+<!--            <mat-card-content>-->
+<!--              <textarea rows="5" matInput (input)= "onInput($event)" placeholder="Vietnamese"></textarea>-->
+<!--            </mat-card-content>-->
+<!--          </mat-card>-->
+<!--        </div>-->
+<!--        <div class="col-6 mt-5 col-md-6">-->
+<!--          <mat-card>-->
+<!--            <mat-card-content>-->
+<!--              <tr *ngFor="let value of english">-->
+<!--                <td>{{value.name}}</td>-->
+<!--              </tr>-->
+<!--            </mat-card-content>-->
+<!--          </mat-card>-->
+<!--        </div>-->
+
+<!--  </div>-->
+<!--</div>-->
+
+
